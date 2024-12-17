@@ -1,35 +1,91 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import CssBaseline from "@mui/material/CssBaseline";
+import Grid from "@mui/material/Grid2";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { amber } from "@mui/material/colors";
+import { LineChart } from "@mui/x-charts/LineChart";
 
-function App() {
-  const [count, setCount] = useState(0)
+import SelectCurrency from "./components/select-currency/select-currency";
+import SwitchCurrency from "./components/switch-currency/switch-currency";
+
+const App = () => {
+  const theme = createTheme({
+    palette: {
+      background: {
+        default: amber[100],
+      },
+    },
+  });
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <Container
+          maxWidth="sm"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+            padding: 3,
+            borderRadius: 6,
+            backgroundColor: "white",
+          }}
+        >
+          <Typography variant="h1" sx={{ fontSize: 36 }} textAlign="center">
+            Currency Converter
+          </Typography>
+          <Grid container spacing={{ xs: 1, md: 2 }}>
+            <SelectCurrency
+              currency="RUB"
+              onChange={() => {
+                console.log("on change");
+              }}
+            />
+            <SwitchCurrency />
+            <SelectCurrency
+              currency="USD"
+              onChange={() => {
+                console.log("on change");
+              }}
+            />
+          </Grid>
+          <Stack>
+            <Typography>1 USD =</Typography>
+            <Typography sx={{ fontSize: 24, fontWeight: "bold" }}>
+              500 RUB
+            </Typography>
+          </Stack>
+          <Stack gap={2} mt={4}>
+            <Typography variant="h2" textAlign="center" sx={{ fontSize: 24 }}>
+              Exchange Rate History (7 days)
+            </Typography>
+            <LineChart
+              xAxis={[{ scaleType: "point", data: [1, 2, 3, 4].map((d) => d) }]}
+              series={[
+                {
+                  data: [1, 2, 3, 4].map((d) => d),
+                  label: `Rate (RUB to USD)`,
+                },
+              ]}
+              width={500}
+              height={300}
+            />
+          </Stack>
+        </Container>
+      </Box>
+    </ThemeProvider>
+  );
+};
 
-export default App
+export default App;
