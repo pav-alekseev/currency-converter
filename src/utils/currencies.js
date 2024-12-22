@@ -1,33 +1,34 @@
-export class CurrencyBase {
-  constructor(name, code) {
+class CurrencyBase {
+  constructor(name, code, flag) {
     this.name = name;
     this.code = code;
+    this.flag = flag;
   }
 
   getCurrencyInfo() {
-    return `${this.name} (${this.code})`;
+    return `${this.flag} ${this.name} (${this.code})`;
   }
 }
 
-export class CurrencyUSD extends CurrencyBase {
+class CurrencyUSD extends CurrencyBase {
   constructor() {
-    super("United States Dollar", "USD");
+    super("United States Dollar", "USD", "\uD83C\uDDFA\uD83C\uDDF8");
   }
 }
 
-export class CurrencyEUR extends CurrencyBase {
+class CurrencyEUR extends CurrencyBase {
   constructor() {
-    super("Euro", "EUR");
+    super("Euro", "EUR", "\uD83C\uDDEA\uD83C\uDDFA");
   }
 }
 
-export class CurrencyRUB extends CurrencyBase {
+class CurrencyRUB extends CurrencyBase {
   constructor() {
-    super("Russian Ruble", "RUB");
+    super("Russian Ruble", "RUB", "\uD83C\uDDF7\uD83C\uDDFA");
   }
 }
 
-export class CurrencyFactory {
+class CurrencyFactory {
   static createCurrency(currencyCode) {
     switch (currencyCode) {
       case "USD":
@@ -41,3 +42,7 @@ export class CurrencyFactory {
     }
   }
 }
+
+export const currencies = ["USD", "EUR", "RUB"];
+
+export default CurrencyFactory;
