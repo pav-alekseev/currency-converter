@@ -118,7 +118,7 @@ const App = () => {
                   </Typography>
                   <Typography sx={{ fontSize: 24, fontWeight: "bold" }}>
                     {isLoading
-                      ? "Курс загружается"
+                      ? "Rates is loading..."
                       : `${
                           rate * amount
                         } ${quoteCurrencyInfo.getCurrencyInfo()}`}
