@@ -12,18 +12,30 @@ class ApiClient {
   }
 
   async getRate(base, symbols) {
-    try {
-      const response = await axios.get(
-        `${this.baseUrl}/latest?access_key=${this.apiKey}&base=${base}&symbols=${symbols}`
+    const response = await axios.get(
+      `${this.baseUrl}/convert?access_key=${
+        this.apiKey
+      }&from=${base}&to=${symbols}&amount=${1}`
+    );
+
+    if (response.data.success) {
+      return response.data.result;
+    } else {
+      throw new Error(response.data.error.info || "Failed to fetch rates");
+    }
+  }
+
+  async getHistoricalRates(baseCurrency, quoteCurrency, startDate, endDate) {
+    const response = await axios.get(
+      `${this.baseUrl}/timeframe?access_key=${this.apiKey}&start_date=${startDate}&end_date=${endDate}&source=${baseCurrency}&currencies=${quoteCurrency}`
+    );
+
+    if (response.data.success) {
+      return response.data.quotes;
+    } else {
+      throw new Error(
+        response.data.error.info || "Failed to fetch historical rates"
       );
-      if (response.data.success) {
-        return response.data.rates;
-      } else {
-        throw new Error(response.data.error.info || "Failed to fetch rates");
-      }
-    } catch (error) {
-      console.error("Error fetching exchange rate:", error.message);
-      return null;
     }
   }
 }
