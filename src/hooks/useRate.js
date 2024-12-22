@@ -36,7 +36,7 @@ const useRate = (baseCurrency, quoteCurrency) => {
           }))
         );
       } catch (error) {
-        setError("Error fetching historical rates:", error.message);
+        setError("Error fetching rates:", error.message);
       } finally {
         setIsLoading(false);
       }
