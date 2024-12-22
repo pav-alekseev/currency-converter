@@ -6,7 +6,7 @@ class ApiClient {
       return ApiClient.instance;
     }
 
-    this.baseUrl = "http://api.exchangerate.host";
+    this.baseUrl = "https://api.exchangerate.host";
     this.apiKey = import.meta.env.VITE_EXCHANGE_API_KEY;
     ApiClient.instance = this;
   }
