@@ -3,23 +3,17 @@ import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid2";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import CurrencyFactory, { currencies } from "../../utils/currencies";
 
 const SelectCurrency = ({ currency, onChange }) => {
   return (
-    <Grid size="grow">
+    <Grid size={{ xs: 12, sm: "grow" }}>
       <Select value={currency} onChange={onChange} fullWidth>
-        <MenuItem key="currency_1" value="USD">
-          USD
-          {/* {CurrencyFactory.createCurrency(cur).getCurrencyInfo()} */}
-        </MenuItem>
-        <MenuItem key="currency_2" value="EUR">
-          EUR
-          {/* {CurrencyFactory.createCurrency(cur).getCurrencyInfo()} */}
-        </MenuItem>
-        <MenuItem key="currency_3" value="RUB">
-          RUB
-          {/* {CurrencyFactory.createCurrency(cur).getCurrencyInfo()} */}
-        </MenuItem>
+        {currencies.map((currency) => (
+          <MenuItem key={currency} value={currency}>
+            {CurrencyFactory.createCurrency(currency).getCurrencyInfo()}
+          </MenuItem>
+        ))}
       </Select>
     </Grid>
   );
