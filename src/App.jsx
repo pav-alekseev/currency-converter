@@ -34,9 +34,8 @@ const App = () => {
   const quoteCurrencyInfo = CurrencyFactory.createCurrency(quoteCurrency);
 
   const switchCurrencies = () => {
-    const temp = baseCurrency;
     setBaseCurrency(quoteCurrency);
-    setQuoteCurrency(temp);
+    setQuoteCurrency(baseCurrency);
   };
 
   const handleChangeBaseCurrency = (event) => {
@@ -119,9 +118,9 @@ const App = () => {
                   <Typography sx={{ fontSize: 24, fontWeight: "bold" }}>
                     {isLoading
                       ? "Rates is loading..."
-                      : `${
-                          rate * amount
-                        } ${quoteCurrencyInfo.getCurrencyInfo()}`}
+                      : `${(rate * amount).toFixed(
+                          2
+                        )} ${quoteCurrencyInfo.getCurrencyInfo()}`}
                   </Typography>
                 </Stack>
                 <Stack gap={2} mt={4}>
