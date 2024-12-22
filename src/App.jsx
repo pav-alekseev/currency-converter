@@ -72,11 +72,10 @@ const App = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "100vh",
+          margin: 2,
         }}
       >
         <Container
-          maxWidth="sm"
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -85,6 +84,7 @@ const App = () => {
             borderRadius: 6,
             backgroundColor: "white",
           }}
+          maxWidth="sm"
         >
           <Typography variant="h1" sx={{ fontSize: 36 }} textAlign="center">
             Currency Converter
@@ -153,7 +153,6 @@ const App = () => {
                             },
                           ]
                     }
-                    width={500}
                     height={300}
                     loading={isLoading}
                   />
