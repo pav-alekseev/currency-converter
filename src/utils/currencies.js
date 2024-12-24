@@ -38,7 +38,7 @@ class CurrencyFactory {
       case "RUB":
         return new CurrencyRUB();
       default:
-        return new CurrencyBase("Unknown", currencyCode);
+        return new CurrencyBase("Unknown", currencyCode, '\uD83C\uDFF3\uFE0F');
     }
   }
 }

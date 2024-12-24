@@ -14,7 +14,7 @@ import { amber } from "@mui/material/colors";
 import SelectCurrency from "./components/select-currency/select-currency";
 import SwitchCurrency from "./components/switch-currency/switch-currency";
 import CurrencyFactory from "./utils/currencies";
-import useRate from "./hooks/useRate";
+import useRate from "./hooks/use-rate";
 import InputCurrency from "./components/input-currency/input-currency";
 
 const App = () => {
