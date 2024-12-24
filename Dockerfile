@@ -1,17 +1,20 @@
-FROM node:20-alpine
+# Используем официальный образ Node.js
+FROM node:18-alpine
 
+# Устанавливаем рабочую директорию
 WORKDIR /app
 
-COPY package.json .
+# Копируем package.json и package-lock.json
+COPY package*.json ./
 
+# Устанавливаем зависимости
 RUN npm install
 
-RUN npm i -g serve
-
+# Копируем остальные файлы проекта
 COPY . .
 
-RUN npm run build
+# Открываем порт 8080 для работы приложения
+EXPOSE 8080
 
-EXPOSE 3000
-
-CMD [ "serve", "-s", "dist" ]
+# Команда для запуска приложения
+CMD ["npm", "run", "dev"]
