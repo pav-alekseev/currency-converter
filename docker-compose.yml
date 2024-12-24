@@ -1,12 +1,14 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  currency-converter:
-    build: .
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "8080:8080" # Пробрасываем порт 8080 из контейнера на хост
     volumes:
-      - .:/app
-      - /app/node_modules
+      - .:/app # Монтируем текущую директорию внутрь контейнера
+      - /app/node_modules # Исключаем node_modules из монтирования
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
